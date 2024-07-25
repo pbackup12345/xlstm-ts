@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 
 import logging
 import warnings
+import os
 
 import pywt
 
