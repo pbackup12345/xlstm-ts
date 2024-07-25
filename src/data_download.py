@@ -6,8 +6,9 @@ import requests
 import pandas as pd
 import time
 import matplotlib.pyplot as plt
+import os
 
-TIINGO_API_KEY = 'e24d4765870dd6588f8c4706b4301dd7001aa4ba'
+TIINGO_API_KEY = os.getenv('TIINGO_API_KEY')
 
 def download_data(ticker, start_date, end_date):
     data = yf.Ticker(ticker)
