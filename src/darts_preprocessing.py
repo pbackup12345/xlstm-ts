@@ -103,7 +103,7 @@ def convert_to_ts_daily(df):
 # Train, Validation and Test split
 # -------------------------------------------------------------------------------------------
 
-def split_train_val_test(series, train_end_date, val_end_date):
+def split_train_val_test_darts(series, train_end_date, val_end_date):
     # Split the data by date
     train, temp = series.split_before(pd.Timestamp(train_end_date))
 
