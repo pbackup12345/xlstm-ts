@@ -4,6 +4,7 @@ import datetime
 import pandas as pd
 from darts import TimeSeries
 from pandas.tseries.holiday import AbstractHolidayCalendar, Holiday, nearest_workday
+from darts.dataprocessing.transformers.scaler import Scaler
 
 # -------------------------------------------------------------------------------------------
 # Convert to darts TimeSeries
@@ -97,3 +98,37 @@ def convert_to_ts_daily(df):
     series_denoised = _get_ts_series(times=times, values=df['Close_denoised'])
 
     return series, series_denoised
+
+# -------------------------------------------------------------------------------------------
+# Train, Validation and Test split
+# -------------------------------------------------------------------------------------------
+
+def split_train_val_test(series, train_end_date, val_end_date):
+    # Split the data by date
+    train, temp = series.split_before(pd.Timestamp(train_end_date))
+
+    val, test = temp.split_before(pd.Timestamp(val_end_date))
+
+    return train, val, test
+
+# -------------------------------------------------------------------------------------------
+# Normalise data
+# -------------------------------------------------------------------------------------------
+
+def normalise_data_darts(data, scaler=None):
+    if scaler:
+        return scaler.transform(data)
+    else:
+        scaler = Scaler() # default uses sklearn's MinMaxScaler
+        data = scaler.fit_transform(data)
+        return data, scaler
+  
+def inverse_normalise_data_darts(data, scaler):
+    return scaler.inverse_transform(data)
+
+def normalise_split_data_darts(train, val, test):
+    train, scaler = normalise_data_darts(train)
+    val = normalise_data_darts(val, scaler)
+    test = normalise_data_darts(test, scaler)
+
+    return train, val, test, scaler
