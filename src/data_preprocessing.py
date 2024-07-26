@@ -65,7 +65,7 @@ def plot_wavelet_denoising(df, stock):
 
     fig.suptitle(f"Wavelet Denoising for {stock}", fontsize=16)
 
-    plt.tight_layout(rect=[0, 0, 1, 0.96]) 
+    plt.tight_layout() 
     plt.show()
 
 # -------------------------------------------------------------------------------------------
