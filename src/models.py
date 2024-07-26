@@ -54,7 +54,7 @@ common_model_args = {
     "save_checkpoints": True,  # checkpoint to retrieve the best performing model state,
     "force_reset": True,
     "batch_size": 256,
-    "RANDOM_STATE": RANDOM_STATE,
+    "random_state": RANDOM_STATE,
 }
 
 # Common parameters for SOME models
@@ -110,7 +110,7 @@ def create_params(input_chunk_length: int, output_chunk_length: int, full_traini
         "save_checkpoints": True,  # checkpoint to retrieve the best performing model state,
         "force_reset": True,
         "batch_size": batch_size,
-        "RANDOM_STATE": RANDOM_STATE,
+        "random_state": RANDOM_STATE,
         "add_encoders": {
             "cyclic": {
                 "future": ["hour", "dayofweek", "month"]
