@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 
 # -------------------------------------------------------------------------------------------
 # Wavelet denoising
+#
+# Reference: https://doi.org/10.1002/for.3071
+# (the idea of the wavelet denoising and some parameters are taken from this paper)
 # -------------------------------------------------------------------------------------------
 
 # Function for padding the data

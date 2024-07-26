@@ -1,5 +1,13 @@
 # src/darts_preprocessing.py
 
+# -------------------------------------------------------------------------------------------
+# Darts Library:
+#
+# - Paper: https://www.jmlr.org/papers/v23/21-1177.html
+# - Documentation: https://unit8co.github.io/darts/README.html#
+# - Repository: https://github.com/unit8co/darts
+# -------------------------------------------------------------------------------------------
+
 import datetime
 import pandas as pd
 from darts import TimeSeries
