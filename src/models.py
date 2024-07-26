@@ -10,16 +10,11 @@ from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 from darts.utils.callbacks import TFMProgressBar
 from sklearn.metrics import mean_absolute_error, mean_squared_error, root_mean_squared_error, mean_absolute_percentage_error, r2_score, confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
 from src.darts_preprocessing import inverse_normalise_data_darts
+from src.constants import SEQ_LENGTH, RANDOM_STATE
 
 # -------------------------------------------------------------------------------------------
-# Constants
+# Functions for Darts models
 # -------------------------------------------------------------------------------------------
-
-seq_length = 100
-random_state = 0
-full_training = False # SET TO TRUE WHEN CODING IS COMPLETE
-metrics_accumulator = {}
-metrics_accumulator_denoised = {}
 
 # early stopping (needs to be reset for each model later on)
 # this setting stops training once the the validation loss has not decreased by more than 1e-3 for 10 epochs
@@ -49,7 +44,7 @@ pl_trainer_kwargs = {
 }
 
 common_model_args = {
-    "input_chunk_length": seq_length,  # lookback window
+    "input_chunk_length": SEQ_LENGTH,  # lookback window
     "output_chunk_length": 1,  # forecast/lookahead window
     "optimizer_kwargs": optimizer_kwargs,
     "pl_trainer_kwargs": pl_trainer_kwargs,
@@ -59,7 +54,7 @@ common_model_args = {
     "save_checkpoints": True,  # checkpoint to retrieve the best performing model state,
     "force_reset": True,
     "batch_size": 256,
-    "random_state": random_state,
+    "RANDOM_STATE": RANDOM_STATE,
 }
 
 # Common parameters for SOME models
@@ -115,7 +110,7 @@ def create_params(input_chunk_length: int, output_chunk_length: int, full_traini
         "save_checkpoints": True,  # checkpoint to retrieve the best performing model state,
         "force_reset": True,
         "batch_size": batch_size,
-        "random_state": random_state,
+        "RANDOM_STATE": RANDOM_STATE,
         "add_encoders": {
             "cyclic": {
                 "future": ["hour", "dayofweek", "month"]
@@ -150,6 +145,8 @@ def fit(model, train, val):
 
 # -------------------------------------------------------------------------------------------
 # Forecasting metrics
+#
+# https://gist.github.com/bshishov/5dc237f59f019b26145648e2124ca1c9
 # -------------------------------------------------------------------------------------------
 
 def _naive_forecasting(actual: np.ndarray, seasonality: int = 1):
@@ -407,13 +404,13 @@ def training_darts(model, train, val, test, scaler, data_type, train_denoised=No
 
     model_name = model.model_name
 
-    actual_values_train = train[seq_length:]
+    actual_values_train = train[SEQ_LENGTH:]
     actual_values_train = inverse_normalise_data_darts(actual_values_train, scaler)
 
-    actual_values_val = val[seq_length:]
+    actual_values_val = val[SEQ_LENGTH:]
     actual_values_val = inverse_normalise_data_darts(actual_values_val, scaler)
 
-    actual_values_test = test[seq_length:]
+    actual_values_test = test[SEQ_LENGTH:]
     actual_values_test = inverse_normalise_data_darts(actual_values_test, scaler)
 
     print("Price Prediction Metrics:\n")
