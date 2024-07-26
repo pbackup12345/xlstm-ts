@@ -377,7 +377,7 @@ def evaluate_directional_movement(actual_values_train, backtest_train, actual_va
 # Training logic for darts models
 # -------------------------------------------------------------------------------------------
 
-def training_darts(model, train, val, test, scaler, data_type, train_denoised=None, val_denoised=None, test_denoised=None, scaler_denoised=None):
+def training_darts(model, train, val, test, scaler, stock, data_type, train_denoised=None, val_denoised=None, test_denoised=None, scaler_denoised=None):
     if train_denoised is not None and val_denoised is not None and test_denoised is not None and scaler_denoised is not None:
         # Use denoised data for training and validation if provided
         fit(model, train_denoised, val_denoised)
@@ -417,8 +417,8 @@ def training_darts(model, train, val, test, scaler, data_type, train_denoised=No
 
     metrics_price = calculate_metrics(actual_values_test, backtest_test, model_name, data_type)
 
-    visualise(actual_values_test, backtest_test, "S&P 500", model_name, data_type, show_complete=True)
-    visualise(actual_values_test, backtest_test, "S&P 500", model_name, data_type, show_complete=False)
+    visualise(actual_values_test, backtest_test, stock, model_name, data_type, show_complete=True)
+    visualise(actual_values_test, backtest_test, stock, model_name, data_type, show_complete=False)
 
     print("\nDirectional Movement Metrics:\n")
 
