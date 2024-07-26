@@ -45,16 +45,16 @@ def plot_wavelet_denoising(df, stock):
     print(f"Signal-to-Noise Ratio (SNR): {snr:.2f} dB")
 
     # Plotting the results
-    _, axes = plt.subplots(nrows=3, ncols=1, figsize=(6, 6))
+    _, axes = plt.subplots(nrows=3, ncols=1, figsize=(10, 7))
     loc = 'upper left'
 
     # Plot Original Signal
-    axes[0].plot(df.index, df['Close'], label='Original Signal')
+    axes[0].plot(df.index, df['Close'], label='Original Signal', color='blue')
     axes[0].legend(loc=loc)
     axes[0].grid(False)  # Disable grid
 
     # Plot Denoised Signal
-    axes[1].plot(df.index, df['Close_denoised'], label='Denoised Signal', color='orange')
+    axes[1].plot(df.index, df['Close_denoised'], label='Denoised Signal', color='green')
     axes[1].legend(loc=loc)
     axes[1].grid(False)  # Disable grid
 
