@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import torch
 import matplotlib.pyplot as plt
+from constants import SEQ_LENGTH_XLSTM
 
 # -------------------------------------------------------------------------------------------
 # Normalise data
@@ -22,13 +23,13 @@ def inverse_normalise_data_xlstm(data, scaler):
 # -------------------------------------------------------------------------------------------
 
 # Function to create sequences
-def create_sequences(data, seq_length, dates):
+def create_sequences(data, dates):
     xs, ys, date_list = [], [], []
 
-    for i in range(len(data) - seq_length):
-        x = data[i:i + seq_length]
-        y = data[i + seq_length]
-        date = dates[i + seq_length]
+    for i in range(len(data) - SEQ_LENGTH_XLSTM):
+        x = data[i:i + SEQ_LENGTH_XLSTM]
+        y = data[i + SEQ_LENGTH_XLSTM]
+        date = dates[i + SEQ_LENGTH_XLSTM]
         xs.append(x)
         ys.append(y)
         date_list.append(date)
