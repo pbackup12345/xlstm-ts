@@ -26,7 +26,7 @@ from torchinfo import summary
 import torch
 import torch.optim as optim
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-from ml.models import visualise, calculate_metrics, evaluate_directional_movement
+from ml.models.models import visualise, calculate_metrics, evaluate_directional_movement
 from ml.xlstm_ts.preprocessing import inverse_normalise_data_xlstm
 
 # -------------------------------------------------------------------------------------------

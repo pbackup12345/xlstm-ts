@@ -2,7 +2,7 @@
 
 from darts.models import TCNModel, NBEATSModel, TFTModel, TiDEModel, NHiTSModel, TSMixerModel
 from ml.constants import SEQ_LENGTH, RANDOM_STATE, FULL_TRAINING
-from ml.models import create_params, common_model_args
+from ml.models.models import create_params, common_model_args
 
 # -------------------------------------------------------------------------------------------
 # TCN
