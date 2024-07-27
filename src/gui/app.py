@@ -5,10 +5,10 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from src.ml.data.download import download_data, plot_data, search_ticker
+from ml.data.download import download_data_gui, plot_data, search_ticker
 from datetime import datetime
 from gui.utils import validate_date, Stock
-from ml.pipeline import run_pipeline
+from ml.pipeline.pipeline import run_pipeline
 
 class StockDataViewer:
     def __init__(self, root):
@@ -123,7 +123,7 @@ class StockDataViewer:
             if freq == "hourly" and (datetime.now() - start_date).days > 730:
                 self.warning_label.place(x=200, y=120)  # Show warning label
             else:
-                self.df = download_data(ticker, start_date, freq=freq)
+                self.df = download_data_gui(ticker, start_date, freq=freq)
                 plot_data(self.df, stock, self.ax)
                 self.canvas.draw()
                 self.stock_obj = current_stock_obj
@@ -134,7 +134,7 @@ class StockDataViewer:
             self.logo_label.pack(fill=tk.BOTH, expand=True)  # Show the logo
         elif not current_stock_obj.equals(self.stock_obj):
             print(f"Downloading {stock} data...")
-            self.df = download_data(ticker, start_date, freq=freq)
+            self.df = download_data_gui(ticker, start_date, freq=freq)
             plot_data(self.df, stock, self.ax)
             self.canvas.draw()
             self.current_stock = stock

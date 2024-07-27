@@ -148,13 +148,21 @@ def _download_hourly_data(ticker, start_date=None):
 
     return all_data
 
-def download_data(ticker, start_date, freq="daily"):
+def download_data_gui(ticker, start_date, freq="daily"):
     if freq == "daily":
         df = _download_yahoo_finance_data(ticker, start_date, interval='1d')
-    #    df = _download_daily_data(ticker, start_date)
     elif freq == "hourly":
         df = _download_yahoo_finance_data(ticker, start_date, interval='1h')
-    #    df = _download_hourly_data(ticker, start_date)
+    else:
+        raise ValueError("Invalid frequency. Must be 'daily' or 'hourly'.")
+
+    return df
+
+def download_data(ticker, start_date, freq="daily"):
+    if freq == "daily":
+        df = _download_daily_data(ticker, start_date)
+    elif freq == "hourly":
+        df = _download_hourly_data(ticker, start_date)
     else:
         raise ValueError("Invalid frequency. Must be 'daily' or 'hourly'.")
 
