@@ -1,4 +1,4 @@
-# src/xlstm_ts_model.py
+# src/ml/xlstm_ts/model.py
 
 # -------------------------------------------------------------------------------------------
 # New proposed model: xLSTM-TS, a time series-specific implementation
@@ -21,13 +21,13 @@ from xlstm import (
     sLSTMLayerConfig,
     FeedForwardConfig,
 )
-from src.constants import SEQ_LENGTH_XLSTM
+from src.ml.constants import SEQ_LENGTH_XLSTM
 from torchinfo import summary
 import torch
 import torch.optim as optim
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-from src.models import visualise, calculate_metrics, evaluate_directional_movement
-from src.xlstm_preprocessing import inverse_normalise_data_xlstm
+from src.ml.models import visualise, calculate_metrics, evaluate_directional_movement
+from src.ml.xlstm_ts.preprocessing import inverse_normalise_data_xlstm
 
 # -------------------------------------------------------------------------------------------
 # Configuration
