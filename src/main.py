@@ -1,6 +1,5 @@
 # src/main.py
 
-import os
 from gui.app import StockDataViewer
 import tkinter as tk
 
