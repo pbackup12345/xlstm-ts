@@ -115,9 +115,11 @@ def _download_hourly_data(ticker, start_date=None):
 
     end_date_dt = datetime.datetime.now()
     try:
-        start_date_dt = end_date_dt - datetime.timedelta(days=730)
-    except (ValueError, TypeError):
         start_date_dt = datetime.datetime.strptime(start_date, "%Y-%m-%d")
+    except (ValueError, TypeError):
+        start_date_dt = end_date_dt - datetime.timedelta(days=730)
+
+    print(start_date_dt)
 
     # DataFrame to store the combined data
     all_data = pd.DataFrame()
@@ -159,8 +161,6 @@ def download_data_gui(ticker, start_date, freq="daily"):
     return df
 
 def download_data(ticker, start_date, freq="daily"):
-    if start_date and not isinstance(start_date, datetime.datetime):
-        start_date = datetime.datetime.strptime(start_date, "%Y-%m-%d")
     if freq == "daily":
         df = _download_daily_data(ticker, start_date)
     elif freq == "hourly":
