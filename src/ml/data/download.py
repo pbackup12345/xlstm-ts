@@ -159,6 +159,8 @@ def download_data_gui(ticker, start_date, freq="daily"):
     return df
 
 def download_data(ticker, start_date, freq="daily"):
+    if start_date and not isinstance(start_date, datetime.datetime):
+        start_date = datetime.datetime.strptime(start_date, "%Y-%m-%d")
     if freq == "daily":
         df = _download_daily_data(ticker, start_date)
     elif freq == "hourly":
