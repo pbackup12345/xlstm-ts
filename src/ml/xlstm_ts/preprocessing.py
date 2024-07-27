@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import torch
 import matplotlib.pyplot as plt
-from ml.constants import SEQ_LENGTH_XLSTM
+from src.ml.constants import SEQ_LENGTH_XLSTM
 
 # -------------------------------------------------------------------------------------------
 # Normalise data
