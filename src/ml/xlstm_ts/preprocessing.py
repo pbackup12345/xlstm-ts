@@ -1,11 +1,11 @@
-# src/xlstm_preprocessing.py
+# src/ml/xlstm_ts/preprocessing.py
 
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 import pandas as pd
 import torch
 import matplotlib.pyplot as plt
-from constants import SEQ_LENGTH_XLSTM
+from ml.constants import SEQ_LENGTH_XLSTM
 
 # -------------------------------------------------------------------------------------------
 # Normalise data

@@ -1,4 +1,4 @@
-# src/data_preprocessing.py
+# src/ml/data/preprocessing.py
 
 import pywt
 import numpy as np
