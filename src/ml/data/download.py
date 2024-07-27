@@ -119,8 +119,6 @@ def _download_hourly_data(ticker, start_date=None):
     except (ValueError, TypeError):
         start_date_dt = end_date_dt - datetime.timedelta(days=730)
 
-    print(start_date_dt)
-
     # DataFrame to store the combined data
     all_data = pd.DataFrame()
 
