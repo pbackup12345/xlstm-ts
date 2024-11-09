@@ -1,8 +1,8 @@
-# src/ml/darts/models.py
+# src/ml/models/darts/darts_models.py
 
 from darts.models import TCNModel, NBEATSModel, TFTModel, TiDEModel, NHiTSModel, TSMixerModel
 from ml.constants import SEQ_LENGTH, RANDOM_STATE, FULL_TRAINING
-from ml.models.models import create_params, common_model_args
+from src.ml.models.shared.utils import create_params, common_model_args
 
 # -------------------------------------------------------------------------------------------
 # TCN
