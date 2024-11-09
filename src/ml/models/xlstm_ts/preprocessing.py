@@ -6,6 +6,7 @@ import pandas as pd
 import torch
 import matplotlib.pyplot as plt
 from ml.constants import SEQ_LENGTH_XLSTM
+from ml.utils.visualisation import plot_data_split
 
 # -------------------------------------------------------------------------------------------
 # Normalise data
@@ -67,26 +68,11 @@ def _split_data(x, y, dates, set, train_end_date, val_end_date):
 
     return x_splitted, y_splitted, dates[mask]
 
-def _plot_data_split(train_dates, train_y, val_dates, val_y, test_dates, test_y, stock):
-    # Plot the data
-    plt.figure(figsize=(10, 7))
-
-    plt.plot(train_dates, train_y, label='Train Data', color='blue')
-    plt.plot(val_dates, val_y, label='Validation Data', color='green')
-    plt.plot(test_dates, test_y, label='Test Data', color='red')
-
-    plt.title(f'{stock} Stock Price - Train, Validation, Test Sets')
-    plt.xlabel('Date')
-    plt.ylabel('Close Price')
-    plt.legend()
-    plt.show()
-
 def split_train_val_test_xlstm(x, y, dates, train_end_date, val_end_date, scaler, stock):
     train_x, train_y, train_dates = _split_data(x, y, dates, 'train', train_end_date, val_end_date)
     val_x, val_y, val_dates = _split_data(x, y, dates, 'val', train_end_date, val_end_date)
     test_x, test_y, test_dates = _split_data(x, y, dates, 'test', train_end_date, val_end_date)
 
-    _plot_data_split(train_dates.to_numpy(), inverse_normalise_data_xlstm(train_y, scaler), val_dates.to_numpy(), inverse_normalise_data_xlstm(val_y, scaler), test_dates.to_numpy(), inverse_normalise_data_xlstm(test_y, scaler), stock)
+    plot_data_split(train_dates.to_numpy(), inverse_normalise_data_xlstm(train_y, scaler), val_dates.to_numpy(), inverse_normalise_data_xlstm(val_y, scaler), test_dates.to_numpy(), inverse_normalise_data_xlstm(test_y, scaler), stock)
 
     return train_x, train_y, train_dates, val_x, val_y, val_dates, test_x, test_y, test_dates
-
