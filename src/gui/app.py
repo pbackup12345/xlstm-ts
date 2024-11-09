@@ -5,7 +5,8 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from ml.data.download import download_data, plot_data, search_ticker
+from ml.data.download import download_data, search_ticker
+from ml.utils.visualisation import plot_data
 from datetime import datetime
 from gui.utils import validate_date, Stock
 from ml.pipeline.pipeline import run_pipeline

@@ -6,7 +6,8 @@ from ml.models.shared.metrics import calculate_metrics
 from ml.models.shared.directional_prediction import evaluate_directional_movement
 from ml.models.xlstm_ts.preprocessing import inverse_normalise_data_xlstm
 from ml.constants import SEQ_LENGTH_XLSTM
-from ml.models.xlstm_ts.xlstm_ts_model import create_xlstm_model, train_model, evaluate_model
+from ml.models.xlstm_ts.xlstm_ts_model import create_xlstm_model
+from ml.models.xlstm_ts.training import train_model, evaluate_model
 
 # -------------------------------------------------------------------------------------------
 # xLSTM-TS logic

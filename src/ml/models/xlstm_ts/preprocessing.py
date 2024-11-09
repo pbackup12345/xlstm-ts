@@ -4,7 +4,6 @@ from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 import pandas as pd
 import torch
-import matplotlib.pyplot as plt
 from ml.constants import SEQ_LENGTH_XLSTM
 from ml.utils.visualisation import plot_data_split
 
