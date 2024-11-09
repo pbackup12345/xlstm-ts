@@ -5,7 +5,7 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from ml.data.download import download_data_gui, plot_data, search_ticker
+from ml.data.download import download_data, plot_data, search_ticker
 from datetime import datetime
 from gui.utils import validate_date, Stock
 from ml.pipeline.pipeline import run_pipeline
@@ -19,7 +19,7 @@ class StockDataViewer:
         # Define attributes
         self.ticker = ""
         self.start_date = ""
-        self.freq = "daily"
+        self.freq = "1d"
         self.selected_stock_name = ""
         self.current_stock = ""
         self.df = None
@@ -28,7 +28,7 @@ class StockDataViewer:
         # Input variables
         self.ticker_var = tk.StringVar()
         self.start_date_var = tk.StringVar()
-        self.freq_var = tk.StringVar(value="daily")
+        self.freq_var = tk.StringVar(value="1d")
 
         # Set up trace on variables to update plot on change
         self.ticker_var.trace_add('write', self.update_suggestions)
@@ -45,8 +45,8 @@ class StockDataViewer:
         self.start_date_entry.pack(pady=5)
 
         ttk.Label(self.window, text="Frequency:").pack(pady=5)
-        ttk.Radiobutton(self.window, text="Daily", variable=self.freq_var, value="daily").pack(pady=5)
-        ttk.Radiobutton(self.window, text="Hourly", variable=self.freq_var, value="hourly").pack(pady=5)
+        ttk.Radiobutton(self.window, text="Daily", variable=self.freq_var, value="1d").pack(pady=5)
+        ttk.Radiobutton(self.window, text="Hourly", variable=self.freq_var, value="1h").pack(pady=5)
 
         # Create the Listbox for search results
         self.listbox = tk.Listbox(self.window)
@@ -86,9 +86,8 @@ class StockDataViewer:
 
     def update_suggestions(self, *args):
         search_term = self.ticker_var.get()
-        freq = self.freq_var.get()
         if search_term:
-            search_results = search_ticker(search_term, freq)
+            search_results = search_ticker(search_term)
             self.listbox.delete(0, tk.END)
             for result in search_results:
                 self.listbox.insert(tk.END, f"{result['symbol']} - {result['name']}")
@@ -123,7 +122,7 @@ class StockDataViewer:
             if freq == "hourly" and (datetime.now() - start_date).days > 730:
                 self.warning_label.place(x=200, y=120)  # Show warning label
             else:
-                self.df = download_data_gui(ticker, start_date, freq=freq)
+                self.df = download_data(ticker, start_date, freq=freq)
                 plot_data(self.df, stock, self.ax)
                 self.canvas.draw()
                 self.stock_obj = current_stock_obj
@@ -134,7 +133,7 @@ class StockDataViewer:
             self.logo_label.pack(fill=tk.BOTH, expand=True)  # Show the logo
         elif not current_stock_obj.equals(self.stock_obj):
             print(f"Downloading {stock} data...")
-            self.df = download_data_gui(ticker, start_date, freq=freq)
+            self.df = download_data(ticker, start_date, freq=freq)
             plot_data(self.df, stock, self.ax)
             self.canvas.draw()
             self.current_stock = stock
@@ -148,7 +147,7 @@ class StockDataViewer:
             if start_date and validate_date(start_date):
                 # Convert date format from DD/MM/YYYY to YYYY-MM-DD
                 start_date_obj = datetime.strptime(start_date, "%d/%m/%Y")
-                return start_date_obj
+                return start_date_obj.strftime("%Y-%m-%d")  # Return as a string
         except Exception:
             pass
         return None
