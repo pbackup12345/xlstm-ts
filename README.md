@@ -41,6 +41,8 @@ This is the **official repository** for the paper *"An Evaluation of Deep Learni
 - **Wavelet Denoising**: Noise reduction using discrete wavelet transforms (DWT) for enhanced signal clarity.
 - **Benchmark Models**: Includes leading deep learning architectures for comparison, such as TCN, N-BEATS, TFT, N-HiTS and TiDE.
 - **Comprehensive Evaluation**: Includes metrics such as Accuracy, F1 Score, MAE, RMSE, RMSSE, and MASE.
+- **Interactive Notebooks**: Experiment with pre-defined setups or customise parameters to explore your own datasets.
+- **Extensible Codebase**: Use the modular code in the src/ml folder for your own projects.
 
 ## 📄 Abstract
 
@@ -54,13 +56,103 @@ By leveraging advanced deep learning models and effective data preprocessing tec
 
 ## ⚙️ Installation
 
-To set up the environment and run the code, clone this repository and install the required dependencies:
+To set up the environment and run the code, follow the steps below.
+
+### Clone the Repository
+
+First, clone this repository to your local machine or Google Colab environment:
 
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/gonzalopezgil/xlstm-ts.git
 ```
 
-Ensure all dependencies are installed before running the experiments.
+Navigate to the repository folder:
+
+```bash
+cd xlstm-ts
+```
+
+### Install Dependencies
+
+Install the required Python dependencies:
+
+```bash
+pip install -r requirements.txt --quiet
+```
+
+### Add the `src` Directory to the Python Path
+
+The project uses a modular structure, and the `src` folder contains all the core code. To ensure the code runs smoothly, you need to add the `src` directory to the Python path. This is necessary for importing utilities and model code into your scripts or notebooks.
+
+Run the following Python code to add the `src` directory to the path:
+
+```python
+import sys
+import os
+
+# Get the current working directory
+current_dir = os.getcwd()
+
+# Construct the path to the 'src' directory
+src_path = os.path.join(current_dir, 'src')
+
+# Add the 'src' directory to the Python path
+if src_path not in sys.path:
+    sys.path.append(src_path)
+
+# Now you can import modules from the 'src' directory
+from ml.utils.imports import *  # Example import
+```
+
+### Optional: Retrieve Additional Hourly Data
+
+If you need hourly stock data beyond 2 years (due to API limitations), you can use the **Tiingo API** to fetch it. Follow these steps:
+
+1. Create a Tiingo account at [Tiingo API](https://api.tiingo.com).
+2. Access your API Token at [API Token Account Page](https://api.tiingo.com/account/api/token).
+3. Set the token in your environment:
+
+```python
+import os
+os.environ['TIINGO_API_KEY'] = 'your_tiingo_api_key_here'
+```
+
+## 🚀 Usage
+
+### Using the Jupyter Notebooks
+
+**Note**: A GPU runtime is required for training deep learning models. For example, a T4 GPU in Google Colab works perfectly.
+
+The experiments and examples in this project are provided as Jupyter notebooks under the `notebooks` folder.
+
+To run an experiment:
+
+1. Open a notebook from the `notebooks` folder.
+2. Modify the **Constants** section at the top of the notebook if needed:
+
+```python
+# Dataset settings
+TICKER = '^GSPC'  # S&P 500 index
+STOCK = 'S&P 500'
+
+# Date range and frequency
+START_DATE = '2000-01-01'
+END_DATE = '2023-12-31'
+FREQ = '1d'  # daily frequency
+
+# Train, validation, test split
+TRAIN_END_DATE = '2021-01-01'
+VAL_END_DATE = '2022-07-01'
+```
+
+3. Run the notebook to train and evaluate models or explore your own datasets.
+
+### Using the Source Code
+
+If you want to integrate xLSTM-TS or other models into your own project:
+
+1.	Explore the `src/ml` folder, which contains all model and workflow implementations, including training, evaluation, and preprocessing scripts.
+2.	The `src/gui` folder contains an app under development, not yet complete.
 
 ## 📊 Dataset
 
