@@ -1,4 +1,4 @@
-# xLSTM-TS: Extended Long-Short Term Memory for Time Series
+# 🚀 xLSTM-TS: Extended Long-Short Term Memory for Time Series
 
 ![Project Logo](./assets/logo.png)
 
@@ -25,15 +25,16 @@ This is the **official repository** for the paper *"An Evaluation of Deep Learni
 
 ## 📋 Table of Contents
 
-- [✨ Key Features](#key-features)
-- [📄 Abstract](#abstract)
-- [⚙️ Installation](#installation)
-- [📊 Dataset](#dataset)
-- [🔧 Preprocessing](#preprocessing)
-- [🧠 Models](#models)
-- [📈 Results](#results)
-- [🤝 Contributions](#contributions)
-- [📚 References](#references)
+- [✨ Key Features](#-key-features)
+- [📄 Abstract](#-abstract)
+- [⚙️ Installation](#-installation)
+- [🚀 Usage](#-usage)
+- [📊 Dataset](#-dataset)
+- [🔧 Preprocessing](#-preprocessing)
+- [🧠 Models](#-models)
+- [📈 Results](#-results)
+- [🤝 Contributions](#-contributions)
+- [📚 References](#-references)
 
 ## ✨ Key Features
 
@@ -58,7 +59,7 @@ By leveraging advanced deep learning models and effective data preprocessing tec
 
 To set up the environment and run the code, follow the steps below.
 
-### Clone the Repository
+### 🛠️ Clone the Repository
 
 First, clone this repository to your local machine or Google Colab environment:
 
@@ -72,7 +73,7 @@ Navigate to the repository folder:
 cd xlstm-ts
 ```
 
-### Install Dependencies
+### 📦 Install Dependencies
 
 Install the required Python dependencies:
 
@@ -80,7 +81,7 @@ Install the required Python dependencies:
 pip install -r requirements.txt --quiet
 ```
 
-### Add the `src` Directory to the Python Path
+### 🗂️ Add the `src` Directory to the Python Path
 
 The project uses a modular structure, and the `src` folder contains all the core code. To ensure the code runs smoothly, you need to add the `src` directory to the Python path. This is necessary for importing utilities and model code into your scripts or notebooks.
 
@@ -104,7 +105,7 @@ if src_path not in sys.path:
 from ml.utils.imports import *  # Example import
 ```
 
-### Optional: Retrieve Additional Hourly Data
+### 🔑 Optional: Retrieve Additional Hourly Data
 
 If you need hourly stock data beyond 2 years (due to API limitations), you can use the **Tiingo API** to fetch it. Follow these steps:
 
@@ -119,7 +120,7 @@ os.environ['TIINGO_API_KEY'] = 'your_tiingo_api_key_here'
 
 ## 🚀 Usage
 
-### Using the Jupyter Notebooks
+### 📓 Using the Jupyter Notebooks
 
 **Note**: A GPU runtime is required for training deep learning models. For example, a T4 GPU in Google Colab works perfectly.
 
@@ -147,7 +148,7 @@ VAL_END_DATE = '2022-07-01'
 
 3. Run the notebook to train and evaluate models or explore your own datasets.
 
-### Using the Source Code
+### 🖥️ Using the Source Code
 
 If you want to integrate xLSTM-TS or other models into your own project:
 
