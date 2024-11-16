@@ -59,6 +59,16 @@ By leveraging advanced deep learning models and effective data preprocessing tec
 
 To set up the environment and run the code, follow the steps below.
 
+### 🔧 System Requirements
+
+This project requires CUDA for GPU acceleration. Ensure that you have a GPU with a compatible CUDA version installed to accelerate model training and inference. Refer to CUDA Toolkit Documentation for installation instructions.
+
+CUDA is required for GPU acceleration. The project was developed and tested in the following environment:
+- **Python**: Version 3.10.12 (in Google Colab).
+- **GPU**: NVIDIA T4 GPU (available in Google Colab). This GPU supports CUDA.
+
+If you use Google Colab, ensure that you enable GPU runtime in your notebook settings.
+
 ### 🛠️ Clone the Repository
 
 First, clone this repository to your local machine or Google Colab environment:
