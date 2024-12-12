@@ -27,16 +27,14 @@ def create_sequences(data, gap, dates):
     xs, ys, axs, date_list = [], [], [], []
 
     for i in range(len(data) - SEQ_LENGTH_XLSTM):
-        x = data[i:i + SEQ_LENGTH_XLSTM]
-        a = gap[i:i + SEQ_LENGTH_XLSTM]
+        x = [data[i:i + SEQ_LENGTH_XLSTM], gap[i:i + SEQ_LENGTH_XLSTM]]
         y = data[i + SEQ_LENGTH_XLSTM]
         date = dates[i + SEQ_LENGTH_XLSTM]
         xs.append(x)
         ys.append(y)
-        axs.append(a)
         date_list.append(date)
 
-    X = np.array(xs,axs)
+    X = np.array(xs)
     y = np.array(ys)
     dates = pd.Series(date_list)
 
