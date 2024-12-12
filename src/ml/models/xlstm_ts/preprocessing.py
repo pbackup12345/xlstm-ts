@@ -27,7 +27,7 @@ def create_sequences(data, gap, dates):
     xs, ys, axs, date_list = [], [], [], []
 
     for i in range(len(data) - SEQ_LENGTH_XLSTM):
-        x = np.column_stack(data[i:i + SEQ_LENGTH_XLSTM], gap[i:i + SEQ_LENGTH_XLSTM])
+        x = np.column_stack((data[i:i + SEQ_LENGTH_XLSTM], gap[i:i + SEQ_LENGTH_XLSTM]))
         y = data[i + SEQ_LENGTH_XLSTM]
         date = dates[i + SEQ_LENGTH_XLSTM]
         xs.append(x)
