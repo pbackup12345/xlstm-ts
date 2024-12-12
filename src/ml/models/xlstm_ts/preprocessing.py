@@ -24,7 +24,7 @@ def inverse_normalise_data_xlstm(data, scaler):
 
 # Function to create sequences
 def create_sequences(data, gap, dates):
-    xs, ys, axs, date_list = [], [], []
+    xs, ys, axs, date_list = [], [], [], []
 
     for i in range(len(data) - SEQ_LENGTH_XLSTM):
         x = data[i:i + SEQ_LENGTH_XLSTM]
