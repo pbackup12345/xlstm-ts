@@ -29,7 +29,7 @@ from torchinfo import summary
 
 def create_xlstm_model(seq_length):
     # Define your input size, hidden size, and other relevant parameters
-    input_size = 1  # Number of features in your time series
+    input_size = 2  # Number of features in your time series
     embedding_dim = 64  # Dimension of the embeddings, reduced to save memory
     output_size = 1  # Number of output features (predicting the next value)
 
