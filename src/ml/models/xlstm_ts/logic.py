@@ -23,6 +23,17 @@ def run_xlstm_ts(train_x, train_y, val_x, val_y, test_x, test_y, scaler, stock, 
     # Invert the normalisation for comparison
     test_predictions = inverse_normalise_data_xlstm(test_predictions.squeeze(), scaler)
 
+    f = open('./res.csv',"w")
+
+    for idx in range(1,len(test_predictions)): 
+      if idx == 0:
+        continue
+      # Access test_dates using .iloc to get the value at the integer position idx
+      print(pd.to_datetime(test_dates.values[idx]).strftime('%Y-%m-%d') + " " + ("up" if test_predictions[idx][0] - test_predictions[idx-1][0] > 0 else "down")+" "+str(test_predictions[idx][0]))
+      f.write(pd.to_datetime(test_dates.values[idx]).strftime('%Y-%m-%d') + "\t" + ("up" if test_predictions[idx][0] - test_predictions[idx-1][0] > 0 else "down")+"\t"+str(test_predictions[idx][0] - test_predictions[idx-1][0])+"\n")
+    
+    f.close()
+
     # If the original data is provided, use it for the evaluation
     if train_y_original is not None and val_y_original is not None and test_y_original is not None:
         train_y = train_y_original
