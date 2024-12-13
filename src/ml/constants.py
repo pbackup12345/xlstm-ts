@@ -5,6 +5,6 @@
 # -------------------------------------------------------------------------------------------
 
 SEQ_LENGTH = 100
-SEQ_LENGTH_XLSTM = 60
+SEQ_LENGTH_XLSTM = 100
 RANDOM_STATE = 0
 FULL_TRAINING = False
